@@ -1,18 +1,23 @@
 import NavBar from './components/NavBar'
 import './App.css'
+import TaskList from './components/TaskList'
+import { Grid, GridItem } from '@chakra-ui/react'
 
 function App() {
-  const task = {
-    id: 1,
-    description: "This is a task",
-    dateCreated: "2021-09-01",
-    priority: 1,
-    isComplete: false
-  }
+
 
   return (
     <>
-      <NavBar />
+      <Grid templateAreas={`"nav" "main"`}
+            padding={5}
+            gap={10}>
+        <GridItem area="nav">
+          <NavBar />
+        </GridItem>
+        <GridItem area="main">
+        <TaskList />
+        </GridItem>
+      </Grid>
     </>
   )
 }
