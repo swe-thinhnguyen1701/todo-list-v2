@@ -1,5 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap');
 
+:root{
+  --transition-duration: 0.3s;
+  --transition-function: ease-in-out;
+}
+
 .todo-list-header {
   font-family: "Yuji Mai", sans-serif;
+}
+
+textarea{
+  resize: none !important;
+}
+
+.expand {
+  cursor: pointer;
+  transition-property: transform;
+}
+
+.expand.close {
+  transform: rotate(180deg);
+}
+
+.task-card {
+  height: 100px;
+  transition-property: height;
+}
+
+.task-card.show {
+  height: 100%;
+}
+
+.expand, .task-card {
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-function);
 }
