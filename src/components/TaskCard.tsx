@@ -27,7 +27,7 @@ const TaskCard = ({ task }: Props) => {
                         </Box>}
                 </Collapse>
             </CardBody>
-            <Box position="absolute" bottom="-15px" left="130px">
+            <Box boxShadow="0 2px 2px lightgrey" borderRadius="50%" position="absolute" bottom="-15px" left="130px">
                 <ExpandButton setShow={setShow} />
             </Box>
         </Card>
