@@ -12,9 +12,9 @@ const TaskCard = ({ task }: Props) => {
     const [show, setShow] = useState(false);
 
     return (
-        <Card width="300px" height={show ? "100%" : "100px"}>
+        <Card width={{base: "93.75vw", md: "32.55vw", lg: "25.12vw", xl: "19.53vw"}} maxWidth={{md: "300px"}} height={show ? "100%" : "100px"}>
             <CardBody id="task-card" paddingBottom="30px">
-                <Collapse startingHeight={50} in={show}>
+                <Collapse startingHeight={45} in={show}>
                     <Text marginBottom="20px">
                         {!show ? task.briefDescription : task.fullDescription}
                     </Text>
