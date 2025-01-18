@@ -9,10 +9,6 @@
   font-family: "Yuji Mai", sans-serif;
 }
 
-textarea{
-  resize: none !important;
-}
-
 .expand {
   cursor: pointer;
   transition-property: transform;
@@ -34,4 +30,8 @@ textarea{
 .expand, .task-card {
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-function);
+}
+
+form {
+  margin-bottom: 30px;
 }
