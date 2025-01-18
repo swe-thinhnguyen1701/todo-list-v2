@@ -2,13 +2,13 @@ import { Box, Card, CardBody, Collapse, Text } from "@chakra-ui/react";
 import TaskActions from "./TaskActions";
 import { useState } from "react";
 import ExpandButton from "./ExpandButton";
-import { Task } from "./TaskList";
+import { Task } from "../hooks/useTasks";
 
 interface Props {
     task: Task
 }
 
-const TaskCard = ({task}: Props) => {
+const TaskCard = ({ task }: Props) => {
     const [show, setShow] = useState(false);
 
     return (
@@ -18,14 +18,17 @@ const TaskCard = ({task}: Props) => {
                     <Text marginBottom="20px">
                         {!show ? task.briefDescription : task.fullDescription}
                     </Text>
-                    <Text marginBottom="30px" fontSize="13px">
+                    <Text fontSize="13px">
                         {task.dateCreated}
                     </Text>
-                    <TaskActions />
+                    {!task.isCompleted &&
+                        <Box marginTop="30px">
+                            <TaskActions />
+                        </Box>}
                 </Collapse>
             </CardBody>
             <Box position="absolute" bottom="-15px" left="130px">
-                <ExpandButton setShow={setShow}/>
+                <ExpandButton setShow={setShow} />
             </Box>
         </Card>
     )
