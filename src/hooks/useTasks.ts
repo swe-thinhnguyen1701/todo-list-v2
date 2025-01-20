@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { getAllTaks } from "../services/localStorage";
 
 export interface Task {
@@ -8,13 +9,18 @@ export interface Task {
     isCompleted: boolean;
 }
 
-const useTasks = (selectedTab: number): Task[] => {
-    const data: Task[] = getAllTaks();
+const useTasks = (selectedTab: number, refreshKey: boolean): Task[] => {
+    const [tasks, setTasks] = useState<Task[]>([]);
 
-    if (selectedTab === 0)
-        return data.filter(task => !task.isCompleted);
+    useEffect(() => {
+        const data: Task[] = getAllTaks();
+        if (selectedTab === 0)
+            setTasks(data.filter(task => !task.isCompleted));
+        else
+            setTasks(data.filter(task => task.isCompleted));
+    },[selectedTab, refreshKey]);
 
-    return data.filter(task => task.isCompleted);
+    return tasks;
 }
 
 export default useTasks;

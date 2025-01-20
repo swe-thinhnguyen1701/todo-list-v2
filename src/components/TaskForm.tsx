@@ -1,15 +1,14 @@
 import { Button, Icon, InputGroup, Text, Textarea, VStack } from "@chakra-ui/react";
 import { useRef } from "react";
-import { addTask } from "../services/localStorage";
 import { FaPlus, FaBackspace } from "react-icons/fa";
 
 interface Props {
     isInProgressTab: boolean;
+    onAddTask: (taskDescription: string) => void;
 }
 
-const TaskForm = ({ isInProgressTab }: Props) => {
+const TaskForm = ({ isInProgressTab, onAddTask }: Props) => {
     const ref = useRef<HTMLTextAreaElement>(null);
-    console.log(ref);
 
     const resetInput = () => {
         if (ref.current) {
@@ -23,8 +22,7 @@ const TaskForm = ({ isInProgressTab }: Props) => {
         <form onSubmit={(e) => {
             e.preventDefault();
             if (ref.current) {
-                addTask(ref.current.value);
-                console.log(ref.current.value);
+                onAddTask(ref.current.value);
                 ref.current.value = "";
             }
         }}>

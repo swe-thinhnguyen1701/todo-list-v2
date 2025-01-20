@@ -6,10 +6,17 @@ import TaskTabs from './components/TaskTabs'
 import { useState } from 'react'
 import TaskForm from './components/TaskForm'
 import useTasks from './hooks/useTasks'
+import { addTask } from './services/localStorage'
 
 function App() {
-  const [selectedTab, setSelectTab] = useState(0);
-  const tasks = useTasks(selectedTab);
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(false);
+  const tasks = useTasks(selectedTab, refreshKey);
+
+  const handleAddTask = (taskDescription: string) => {
+    addTask(taskDescription);
+    setRefreshKey(prev => !prev);
+  };
 
   return (
     <>
@@ -25,10 +32,10 @@ function App() {
           <NavBar />
         </GridItem>
         <GridItem area="aside">
-          <TaskTabs onSelectTab={setSelectTab}/>
+          <TaskTabs onSelectTab={setSelectedTab}/>
         </GridItem>
         <GridItem area="main" padding="10px">
-          <TaskForm isInProgressTab={selectedTab === 0} />
+          <TaskForm isInProgressTab={selectedTab === 0} onAddTask={handleAddTask} />
           <TaskList tasks={tasks}/>
         </GridItem>
       </Grid>
