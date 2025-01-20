@@ -33,5 +33,12 @@
 }
 
 form {
+  margin: 0 auto;
   margin-bottom: 30px;
+}
+
+@media screen and (min-width: 1024px){
+  form {
+    max-width: 800px;
+  }
 }

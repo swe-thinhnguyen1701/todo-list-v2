@@ -27,7 +27,7 @@ function App() {
         <GridItem area="aside">
           <TaskTabs onSelectTab={setSelectTab}/>
         </GridItem>
-        <GridItem area="main">
+        <GridItem area="main" padding="10px">
           <TaskForm isInProgressTab={selectedTab === 0} />
           <TaskList tasks={tasks}/>
         </GridItem>
