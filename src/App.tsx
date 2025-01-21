@@ -5,18 +5,19 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import TaskTabs from './components/TaskTabs'
 import { useState } from 'react'
 import TaskForm from './components/TaskForm'
-import useTasks from './hooks/useTasks'
-import { addTask } from './services/localStorage'
+import useTaskStore from './state-management/store'
 
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [refreshKey, setRefreshKey] = useState(false);
-  const tasks = useTasks(selectedTab, refreshKey);
+  const { tasks, addTask } = useTaskStore();
 
   const handleAddTask = (taskDescription: string) => {
     addTask(taskDescription);
-    setRefreshKey(prev => !prev);
   };
+
+  const filteredTasks = tasks.filter((task) => {
+    return selectedTab === 0 ? !task.isCompleted : task.isCompleted
+  });
 
   return (
     <>
@@ -32,11 +33,11 @@ function App() {
           <NavBar />
         </GridItem>
         <GridItem area="aside">
-          <TaskTabs onSelectTab={setSelectedTab}/>
+          <TaskTabs onSelectTab={setSelectedTab} />
         </GridItem>
         <GridItem area="main" padding="10px">
           <TaskForm isInProgressTab={selectedTab === 0} onAddTask={handleAddTask} />
-          <TaskList tasks={tasks}/>
+          <TaskList tasks={filteredTasks} />
         </GridItem>
       </Grid>
     </>

@@ -1,6 +1,5 @@
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import TaskEditorToolBar from "./TaskEditorToolBar";
-import { setModifyTask, getModifyTask } from "../services/localStorage";
 
 interface Props {
     id: number;
@@ -10,7 +9,6 @@ const TaskEditor = ({ id }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const onClickHandler = () => {
-        setModifyTask(id);
         onOpen();
     }
 

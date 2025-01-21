@@ -1,7 +1,6 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-// import { getAllTaks } from "../services/localStorage";
 import TaskCard from "./TaskCard";
-import { Task } from "../hooks/useTasks";
+import { Task } from "../state-management/store";
 
 interface Props {
     tasks: Task[];

@@ -1,20 +1,11 @@
+import { Task } from "../hooks/useTasks";
 import { idGenerator } from "./idGenerator";
-
-export const getTaskById = (id: number) => {
-    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-    return tasks.find((task: { id: number; }) => task.id === id);
-}
-
-export const setModifyTask = (id: number) => {
-    const task = getTaskById(id);
-    localStorage.setItem('modifyTask', JSON.stringify(task));
-}
 
 export const getModifyTask = () => {
     return JSON.parse(localStorage.getItem('modifyTask') || '{}');
 }
 
-export const getAllTaks = () => {
+export const getAllTaks = (): Task[] => {
     return JSON.parse(localStorage.getItem('tasks') || '[]');
 }
 
@@ -29,4 +20,19 @@ export const addTask = (taskDescription: string) => {
     const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+export const completeTask = (id: string) => {
+    const tasks = getAllTaks();
+    tasks.map(task => {
+        if(task.id === id)
+            task.isCompleted = true;
+    });
+    console.log("update task", id);
+    
+    updateData(tasks);
+}
+
+const updateData = (task: Task[]) => {
+    localStorage.setItem('tasks', JSON.stringify(task));
 }

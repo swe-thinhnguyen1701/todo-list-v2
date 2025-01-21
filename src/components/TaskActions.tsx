@@ -3,7 +3,11 @@ import TaskEditor from "./TaskEditor";
 import MarkComplete from "./MarkComplete";
 import RemoveTask from "./RemoveTask";
 
-const TaskActions = () => {
+interface Props {
+    taskId: string;
+}
+
+const TaskActions = ({taskId}: Props) => {
     const task = {
         id: 1,
         description: "This is a task description",
@@ -15,7 +19,7 @@ const TaskActions = () => {
     return(
         <HStack>
             <TaskEditor id={task.id}/>
-            <MarkComplete />
+            <MarkComplete taskId={taskId}/>
             <RemoveTask />
         </HStack>
         

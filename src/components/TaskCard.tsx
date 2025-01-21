@@ -27,7 +27,7 @@ const TaskCard = ({ task }: Props) => {
                     </Text>
                     {!task.isCompleted &&
                         <Box marginTop="30px">
-                            <TaskActions />
+                            <TaskActions taskId={task.id}/>
                         </Box>}
                 </Collapse>
             </CardBody>
