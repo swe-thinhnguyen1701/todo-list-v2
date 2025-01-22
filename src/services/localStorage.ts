@@ -24,7 +24,6 @@ export const completeTask = (id: string) => {
         if(task.id === id)
             task.isCompleted = true;
     });
-    console.log("update task", id);
     
     updateData(tasks);
 }
@@ -54,5 +53,11 @@ export const updateTask = (task: Task) => {
             return task;
         return t;
     });
+    updateData(newTasks);
+}
+
+export const clearCompletedTask = () => {
+    const tasks = getAllTaks();
+    const newTasks = tasks.filter(task => !task.isCompleted);
     updateData(newTasks);
 }

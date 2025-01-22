@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getAllTaks, addTask, completeTask, removeTask, updateTask } from "../services/localStorage";
+import { getAllTaks, addTask, completeTask, removeTask, updateTask, clearCompletedTask } from "../services/localStorage";
 
 export interface Task {
     id: string;
@@ -22,6 +22,7 @@ interface TaskStore {
     modifyTask: (task: ModifiedTask) => void;
     getTaskById: (id: string) => Task | undefined;
     removeTask: (id: string) => void;
+    clearCompletedTask: () => void;
 }
 
 const useTaskStore = create<TaskStore>((set, get) => ({
@@ -56,6 +57,10 @@ const useTaskStore = create<TaskStore>((set, get) => ({
     },
     removeTask: (id: string) => {
         removeTask(id);
+        set({ tasks: getAllTaks() });
+    },
+    clearCompletedTask: () => {
+        clearCompletedTask();
         set({ tasks: getAllTaks() });
     }
 }));

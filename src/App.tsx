@@ -37,7 +37,7 @@ function App() {
         </GridItem>
         <GridItem area="main" padding="10px">
           <TaskForm isInProgressTab={selectedTab === 0} onAddTask={handleAddTask} />
-          <TaskList tasks={filteredTasks} />
+          <TaskList tasks={filteredTasks} isCompletedTab={selectedTab === 1}/>
         </GridItem>
       </Grid>
     </>
