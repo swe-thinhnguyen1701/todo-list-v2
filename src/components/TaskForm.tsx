@@ -35,7 +35,7 @@ const TaskForm = ({ isInProgressTab, onAddTask }: Props) => {
                     </Button>
                     <Button alignItems="center" gap="5px" type="reset" colorScheme="red" onClick={resetInput}>
                         <Icon as={FaBackspace} />
-                        <Text fontWeight="bold"> RESET</Text>
+                        <Text fontWeight="bold"> CLEAR</Text>
                     </Button>
                 </VStack>
             </InputGroup>
