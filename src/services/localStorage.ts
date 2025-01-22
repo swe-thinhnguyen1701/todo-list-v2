@@ -8,7 +8,7 @@ export const getAllTaks = (): Task[] => {
 export const addTask = (taskDescription: string) => {
     const task = {
         id: idGenerator(),
-        briefDescription: taskDescription.length > 50 ? taskDescription.substring(0, 50) : taskDescription,
+        briefDescription: taskDescription.length > 75 ? taskDescription.slice(0, 75) + "..." : taskDescription,
         fullDescription: taskDescription,
         dateCreated: new Date().toLocaleString().split(",")[0],
         isCompleted: false

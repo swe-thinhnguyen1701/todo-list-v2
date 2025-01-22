@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button, useToast } from "@chakra-ui/react";
 import useTaskStore from "../state-management/store";
 
@@ -6,7 +7,7 @@ const ClearCompletedTasks = () => {
     const {clearCompletedTask} = useTaskStore();
 
     const onClickHandler = () => {
-        const onClearData = new Promise((res, rej) => {
+        const onClearData = new Promise((res, _rej) => {
             setTimeout(() => {
                 clearCompletedTask();
                 res(200);

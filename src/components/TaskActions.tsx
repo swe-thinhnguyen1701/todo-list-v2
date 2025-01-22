@@ -9,7 +9,7 @@ interface Props {
 
 const TaskActions = ({taskId}: Props) => {
     return(
-        <HStack>
+        <HStack justifyContent="center">
             <TaskEditor taskId={taskId}/>
             <MarkComplete taskId={taskId}/>
             <RemoveTask taskId={taskId}/>

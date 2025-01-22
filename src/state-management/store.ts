@@ -48,7 +48,7 @@ const useTaskStore = create<TaskStore>((set, get) => ({
             return;
 
         task.fullDescription = modifiedTask.modifiedDescription;
-        task.briefDescription = modifiedTask.modifiedDescription.length > 50 ? modifiedTask.modifiedDescription.slice(0, 50) + "..." : modifiedTask.modifiedDescription;
+        task.briefDescription = modifiedTask.modifiedDescription.length > 90 ? modifiedTask.modifiedDescription.slice(0, 90) + "..." : modifiedTask.modifiedDescription;
         updateTask(task);
         set({ tasks: getAllTaks() });
     },
