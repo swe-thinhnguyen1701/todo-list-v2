@@ -1,9 +1,5 @@
-import { Task } from "../hooks/useTasks";
+import { Task } from "../state-management/store";
 import { idGenerator } from "./idGenerator";
-
-export const getModifyTask = () => {
-    return JSON.parse(localStorage.getItem('modifyTask') || '{}');
-}
 
 export const getAllTaks = (): Task[] => {
     return JSON.parse(localStorage.getItem('tasks') || '[]');
@@ -19,7 +15,7 @@ export const addTask = (taskDescription: string) => {
     }
     const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    updateData(tasks);
 }
 
 export const completeTask = (id: string) => {
@@ -33,6 +29,30 @@ export const completeTask = (id: string) => {
     updateData(tasks);
 }
 
+export const removeTask = (taskId: string) => {
+    const tasks = getAllTaks();
+    console.log(taskId);
+    
+    const newTasks = tasks.filter(task => task.id !== taskId);
+    updateData(newTasks);
+
+}
+
+export const getTaskById = (taskId: string) => {
+    const tasks = getAllTaks();
+    return tasks.find(task => task.id === taskId);
+}
+
 const updateData = (task: Task[]) => {
     localStorage.setItem('tasks', JSON.stringify(task));
+}
+
+export const updateTask = (task: Task) => {
+    const tasks = getAllTaks();
+    const newTasks = tasks.map(t => {
+        if(t.id === task.id)
+            return task;
+        return t;
+    });
+    updateData(newTasks);
 }

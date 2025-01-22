@@ -8,19 +8,11 @@ interface Props {
 }
 
 const TaskActions = ({taskId}: Props) => {
-    const task = {
-        id: 1,
-        description: "This is a task description",
-        dateCreated: "2021-09-01",
-        priority: 1,
-        isComplete: false
-      }
-
     return(
         <HStack>
-            <TaskEditor id={task.id}/>
+            <TaskEditor taskId={taskId}/>
             <MarkComplete taskId={taskId}/>
-            <RemoveTask />
+            <RemoveTask taskId={taskId}/>
         </HStack>
         
     )
